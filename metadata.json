@@ -1,0 +1,8 @@
+{
+  "name": "ERP-BOUL",
+  "description": "ERP Intelligent pour Boulangeries Ivoiriennes — Système d'exploitation complet : Achats, Stocks, Recettes, Production, POS, Finance, Fiscalité FNE et Pilotage.",
+  "capabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ],
+  "permissions": []
+}
