@@ -134,14 +134,13 @@ export function formatFCFA(
 
   if (isDecimalNeeded) {
     const value = toDecimalFCFA(money);
-    return `${new Intl.NumberFormat(CURRENCY_CONFIG.locale, {
-      minimumFractionDigits: 2,
-      maximumFractionDigits: 2,
-    }).format(value)} ${symbol}`;
+    const fixed = value.toFixed(2);
+    const [intPart, decPart] = fixed.split(".");
+    const formattedInt = intPart.replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+    return `${formattedInt},${decPart} ${symbol}`;
   }
 
   const value = toFCFA(money);
-  return `${new Intl.NumberFormat(CURRENCY_CONFIG.locale, {
-    maximumFractionDigits: 0,
-  }).format(value)} ${symbol}`;
+  const formatted = value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+  return `${formatted} ${symbol}`;
 }

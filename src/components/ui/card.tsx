@@ -9,9 +9,9 @@ export function Card({ className, glow = false, ...props }: CardProps) {
   return (
     <div
       className={cn(
-        "relative rounded-xl border border-white/[0.08] bg-[#0c0e17] text-gray-100 shadow-sm transition-all duration-200 overflow-hidden",
+        "relative rounded-xl border border-[#222222] bg-[#0a0a0a] text-[#ededed] shadow-xs transition-all duration-200 overflow-hidden hover:border-[#383838]",
         "before:absolute before:inset-x-0 before:top-0 before:h-px before:bg-gradient-to-r before:from-transparent before:via-white/[0.12] before:to-transparent",
-        glow && "shadow-[0_0_24px_rgba(245,158,11,0.06)] border-amber-500/20",
+        glow && "shadow-[0_0_24px_rgba(0,112,243,0.08)] border-[#0070f3]/40",
         className
       )}
       {...props}
@@ -32,8 +32,8 @@ export function CardTitle({ className, ...props }: React.HTMLAttributes<HTMLHead
   );
 }
 
-export function CardDescription({ className, ...props }: React.HTMLAttributes<HTMLParagraphElement>) {
-  return <p className={cn("text-xs text-gray-400 leading-relaxed", className)} {...props} />;
+export function CardDescription({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {
+  return <div className={cn("text-xs text-gray-400 leading-relaxed", className)} {...props} />;
 }
 
 export function CardContent({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {

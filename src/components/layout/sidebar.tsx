@@ -3,21 +3,13 @@
 import * as React from "react";
 import { cn } from "@/lib/utils";
 import {
+  LayoutDashboard,
   Store,
-  Layers,
   Box,
-  Truck,
   CookingPot,
-  Scale,
-  Receipt,
-  FileCheck2,
   LineChart,
-  ShieldCheck,
-  Settings,
   ChevronLeft,
   ChevronRight,
-  Sparkles,
-  LayoutDashboard,
 } from "lucide-react";
 import { SessionContext } from "@/types/auth";
 import { Avatar } from "../ui/avatar";
@@ -31,6 +23,12 @@ export interface NavItem {
 }
 
 export const NAV_GROUPS: { group: string; items: NavItem[] }[] = [
+  {
+    group: "Pilotage Stratégique",
+    items: [
+      { id: "dashboard", label: "Tableau de Bord Global", module: "dashboard", icon: <LayoutDashboard className="w-4 h-4" />, badge: "Live" },
+    ],
+  },
   {
     group: "Vente & Caisse",
     items: [
@@ -48,13 +46,6 @@ export const NAV_GROUPS: { group: string; items: NavItem[] }[] = [
     group: "Stocks & Matières",
     items: [
       { id: "inventory", label: "Stock Farines & FEFO", module: "stock", icon: <Box className="w-4 h-4" /> },
-    ],
-  },
-  {
-    group: "Système & Design",
-    items: [
-      { id: "design-system", label: "Design System 02", module: "design", icon: <Sparkles className="w-4 h-4" />, badge: "Actif" },
-      { id: "foundation", label: "Socle 01 Foundation", module: "foundation", icon: <ShieldCheck className="w-4 h-4" /> },
     ],
   },
 ];
@@ -77,28 +68,28 @@ export function Sidebar({
   return (
     <aside
       className={cn(
-        "flex flex-col border-r border-white/[0.08] bg-[#07080c] text-gray-200 transition-all duration-300 z-30 select-none",
+        "flex flex-col border-r border-[#1f1f1f] bg-[#000000] text-[#ededed] transition-all duration-300 z-30 select-none",
         isCollapsed ? "w-16" : "w-64",
         className
       )}
     >
-      {/* Brand & Logo */}
-      <div className="h-16 flex items-center justify-between px-3.5 border-b border-white/[0.08]">
+      {/* Brand & Logo Vercel Monochrome */}
+      <div className="h-16 flex items-center justify-between px-3.5 border-b border-[#1f1f1f]">
         <div className="flex items-center space-x-3 overflow-hidden">
-          <div className="w-8 h-8 rounded-lg bg-gradient-to-tr from-amber-600 via-amber-500 to-amber-400 text-black font-black flex items-center justify-center shrink-0 shadow-[0_0_12px_rgba(245,158,11,0.25)] text-xs">
+          <div className="w-8 h-8 rounded-lg bg-white text-black font-black flex items-center justify-center shrink-0 shadow-xs text-xs tracking-tighter">
             EB
           </div>
           {!isCollapsed && (
             <div className="truncate">
               <span className="font-bold text-xs tracking-wider text-white block">ERP-BOUL</span>
-              <span className="text-[10px] text-gray-400 block truncate">Bakery Operating System</span>
+              <span className="text-[10px] text-[#888888] block truncate">Bakery Operating System</span>
             </div>
           )}
         </div>
 
         <button
           onClick={onToggleCollapse}
-          className="text-gray-400 hover:text-white p-1 rounded-md hover:bg-white/[0.06] transition-colors cursor-pointer"
+          className="text-[#888888] hover:text-white p-1 rounded-md hover:bg-white/[0.08] transition-all cursor-pointer"
           title={isCollapsed ? "Agrandir le menu" : "Réduire le menu"}
         >
           {isCollapsed ? <ChevronRight className="w-4 h-4" /> : <ChevronLeft className="w-4 h-4" />}
@@ -110,7 +101,7 @@ export function Sidebar({
         {NAV_GROUPS.map((grp) => (
           <div key={grp.group} className="space-y-1">
             {!isCollapsed && (
-              <h4 className="px-2 text-[10px] font-mono uppercase text-gray-400 font-semibold tracking-wider">
+              <h4 className="px-2 text-[10px] font-mono uppercase text-[#71717a] font-semibold tracking-wider">
                 {grp.group}
               </h4>
             )}
@@ -122,10 +113,10 @@ export function Sidebar({
                   onClick={() => onNavSelect(item.id)}
                   title={isCollapsed ? item.label : undefined}
                   className={cn(
-                    "w-full flex items-center rounded-lg px-2.5 py-1.5 text-xs font-medium transition-all group cursor-pointer",
+                    "w-full flex items-center rounded-lg px-2.5 py-2 text-xs font-medium transition-all group cursor-pointer",
                     isActive
-                      ? "bg-amber-500/15 text-amber-300 border border-amber-500/30 font-semibold shadow-xs"
-                      : "text-gray-400 hover:text-white hover:bg-white/[0.04] border border-transparent",
+                      ? "bg-white/[0.12] text-white border border-white/15 font-semibold shadow-xs"
+                      : "text-[#888888] hover:text-white hover:bg-white/[0.08] hover:border-white/10 hover:shadow-xs border border-transparent",
                     isCollapsed ? "justify-center px-0" : "justify-between"
                   )}
                 >
@@ -133,7 +124,7 @@ export function Sidebar({
                     <span
                       className={cn(
                         "transition-colors shrink-0",
-                        isActive ? "text-amber-400" : "text-gray-400 group-hover:text-gray-200"
+                        isActive ? "text-white" : "text-[#71717a] group-hover:text-white"
                       )}
                     >
                       {item.icon}
@@ -142,7 +133,7 @@ export function Sidebar({
                   </div>
 
                   {!isCollapsed && item.badge && (
-                    <span className="text-[9px] font-mono px-1.5 py-0.2 rounded bg-amber-500/10 text-amber-400 border border-amber-500/20 shrink-0">
+                    <span className="text-[9px] font-mono px-1.5 py-0.2 rounded bg-white/[0.08] text-[#ededed] border border-white/15 shrink-0">
                       {item.badge}
                     </span>
                   )}
@@ -155,7 +146,7 @@ export function Sidebar({
 
       {/* Footer Profil Utilisateur */}
       {session && (
-        <div className="p-3 border-t border-white/[0.08] bg-[#090b12]">
+        <div className="p-3 border-t border-[#1f1f1f] bg-[#0a0a0a]">
           <div className="flex items-center space-x-2.5 overflow-hidden">
             <Avatar name={session.user.fullName} size="sm" />
             {!isCollapsed && (
@@ -163,7 +154,7 @@ export function Sidebar({
                 <span className="text-xs font-semibold text-white block truncate">
                   {session.user.fullName}
                 </span>
-                <span className="text-[10px] font-mono text-amber-400/90 block truncate">
+                <span className="text-[10px] font-mono text-[#888888] block truncate">
                   {session.roles[0]?.name || "Utilisateur"}
                 </span>
               </div>

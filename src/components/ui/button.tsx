@@ -26,21 +26,22 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     ref
   ) => {
     const baseStyles =
-      "relative inline-flex items-center justify-center font-medium transition-all duration-150 select-none cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500/50 disabled:pointer-events-none disabled:opacity-40 active:scale-[0.98]";
+      "relative inline-flex items-center justify-center font-medium transition-all duration-150 select-none cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0070f3]/70 disabled:pointer-events-none disabled:opacity-40 active:scale-[0.98]";
 
+    // Style Vercel pur : Boutons en bleu Vercel (#0070f3) et contrastes sobres
     const variantStyles = {
       primary:
-        "bg-amber-500 text-black font-semibold hover:bg-amber-400 shadow-[0_1px_2px_rgba(0,0,0,0.4),0_0_12px_rgba(245,158,11,0.2)] hover:shadow-[0_0_16px_rgba(245,158,11,0.35)]",
+        "bg-[#0070f3] text-white font-medium hover:bg-[#0060df] shadow-[0_1px_2px_rgba(0,112,243,0.3)] border border-[#0070f3]",
       secondary:
-        "bg-[#111420] text-gray-200 hover:bg-[#181d2e] border border-white/[0.08] hover:border-white/[0.14] hover:text-white shadow-xs",
+        "bg-white text-black font-medium hover:bg-[#eaeaea] border border-[#eaeaea] dark:bg-white dark:text-black dark:hover:bg-[#eaeaea] dark:border-white shadow-xs",
       outline:
-        "bg-transparent text-gray-300 border border-white/[0.10] hover:bg-white/[0.04] hover:text-white hover:border-white/[0.2]",
+        "bg-transparent text-[#ededed] border border-[#333333] hover:border-[#0070f3] hover:text-[#0070f3] hover:bg-[#0070f3]/10",
       ghost:
-        "bg-transparent text-gray-400 hover:text-white hover:bg-white/[0.05]",
+        "bg-transparent text-[#888888] hover:text-[#ededed] hover:bg-white/[0.06]",
       destructive:
-        "bg-rose-600/90 text-white hover:bg-rose-600 border border-rose-500/30 shadow-[0_0_12px_rgba(244,63,94,0.2)]",
+        "bg-[#e00] text-white hover:bg-[#c00] border border-[#e00] shadow-xs",
       subtle:
-        "bg-amber-500/10 text-amber-300 hover:bg-amber-500/18 border border-amber-500/20",
+        "bg-[#0070f3]/15 text-[#0070f3] hover:bg-[#0070f3]/25 border border-[#0070f3]/30",
     };
 
     const sizeStyles = {
@@ -60,7 +61,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         {isLoading && <Loader2 className="w-3.5 h-3.5 animate-spin text-current" />}
         {children}
         {shortcut && !isLoading && (
-          <span className="ml-1 text-[10px] font-mono opacity-50 px-1 py-0.2 rounded bg-black/30 border border-white/[0.08]">
+          <span className="ml-1 text-[10px] font-mono opacity-70 px-1 py-0.2 rounded bg-black/40 border border-white/20">
             {shortcut}
           </span>
         )}

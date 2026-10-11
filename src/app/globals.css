@@ -2,36 +2,33 @@
 
 @layer base {
   :root {
-    --background: #050507;
-    --surface-0: #050507;
-    --surface-1: #090a0f;
-    --surface-2: #0e111a;
-    --surface-3: #141824;
-    --surface-4: #1c2234;
+    /* Vercel Theme - Monochrome Pure Minimalist Base */
+    --background: #000000;
+    --surface-0: #000000;
+    --surface-1: #0a0a0a;
+    --surface-2: #121212;
+    --surface-3: #1a1a1a;
+    --surface-4: #242424;
     
-    --foreground: #f8fafc;
-    --foreground-muted: #94a3b8;
-    --foreground-subtle: #64748b;
+    --foreground: #ededed;
+    --foreground-muted: #888888;
+    --foreground-subtle: #666666;
     
-    --border: rgba(255, 255, 255, 0.08);
-    --border-subtle: rgba(255, 255, 255, 0.04);
-    --border-strong: rgba(255, 255, 255, 0.16);
-    --border-focus: rgba(245, 158, 11, 0.5);
+    --border: rgba(255, 255, 255, 0.1);
+    --border-subtle: rgba(255, 255, 255, 0.06);
+    --border-strong: rgba(255, 255, 255, 0.18);
+    --border-focus: rgba(0, 112, 243, 0.7);
 
-    --primary: #f59e0b;
-    --primary-hover: #d97706;
-    --primary-foreground: #050507;
-    --primary-glow: rgba(245, 158, 11, 0.18);
+    /* Vercel Blue - Réservé aux boutons et actions primaires */
+    --primary: #0070f3;
+    --primary-hover: #0060df;
+    --primary-foreground: #ffffff;
+    --primary-glow: rgba(0, 112, 243, 0.25);
 
-    --accent-blue: #38bdf8;
-    --accent-emerald: #10b981;
-    --accent-violet: #a855f7;
-    --destructive: #f43f5e;
-    
     --radius-sm: 6px;
     --radius-md: 8px;
     --radius-lg: 12px;
-    --radius-xl: 16px;
+    --radius-xl: 14px;
   }
 }
 
@@ -42,9 +39,10 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
+  transition: background-color 0.2s cubic-bezier(0.16, 1, 0.3, 1), color 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Subtle Linear-style ambient grid background */
+/* Grille subtile Vercel */
 .bg-grid-subtle {
   background-size: 32px 32px;
   background-image: 
@@ -57,34 +55,173 @@ body {
   background-image: radial-gradient(circle, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
 }
 
-/* Ultra-refined scrollbar */
+/* Scrollbar ultra-fine Vercel */
 ::-webkit-scrollbar {
   width: 5px;
   height: 5px;
 }
+
 ::-webkit-scrollbar-track {
   background: transparent;
 }
+
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.15);
   border-radius: 9999px;
 }
+
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.22);
+  background: rgba(255, 255, 255, 0.3);
 }
 
-/* Accessible focus ring without distraction */
+/* Anneau de focus Vercel */
 :focus-visible {
-  outline: 2px solid rgba(245, 158, 11, 0.6);
+  outline: 2px solid rgba(0, 112, 243, 0.7);
   outline-offset: 2px;
 }
 
-/* Keyframes for subtle ambient animations */
-@keyframes pulseSubtle {
-  0%, 100% { opacity: 0.4; }
-  50% { opacity: 0.8; }
+/* =========================================================================
+   HOVER TACTILE & TRÈS PERCEPTIBLE (DARK & LIGHT)
+   ========================================================================= */
+
+.interactive-hover {
+  transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.animate-pulse-subtle {
-  animation: pulseSubtle 4s ease-in-out infinite;
+.interactive-hover:hover {
+  transform: translateY(-1.5px);
+  box-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.12), 0 2px 6px -1px rgba(0, 0, 0, 0.08);
+}
+
+html.dark .interactive-hover:hover {
+  box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.8), 0 0 1px 1px rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.28) !important;
+}
+
+/* =========================================================================
+   HARMONISATION COMPLÈTE DU THÈME CLAIR (LIGHT THEME)
+   ========================================================================= */
+
+html.light {
+  color-scheme: light;
+}
+
+html.light body {
+  background-color: #f8fafc !important;
+  color: #0f172a !important;
+}
+
+/* Surfaces en mode clair : Blanc pur pour cartes et conteneurs */
+html.light .bg-\[\#000000\],
+html.light .bg-\[\#050507\],
+html.light .bg-\[\#07080c\],
+html.light .bg-\[\#07080d\],
+html.light .bg-\[\#090a0f\],
+html.light .bg-\[\#090b12\],
+html.light .bg-\[\#0a0a0a\],
+html.light .bg-\[\#0c0e17\],
+html.light .bg-\[\#0d101a\] {
+  background-color: #ffffff !important;
+}
+
+/* Surfaces secondaires & sous-panneaux en mode clair */
+html.light .bg-\[\#121212\],
+html.light .bg-\[\#141414\],
+html.light .bg-\[\#171717\],
+html.light .bg-\[\#1c1c1c\],
+html.light .bg-\[\#111420\],
+html.light .bg-\[\#121624\],
+html.light .bg-\[\#141824\],
+html.light .bg-\[\#151926\],
+html.light .bg-\[\#181d2e\],
+html.light .bg-\[\#1a1a1a\] {
+  background-color: #f1f5f9 !important;
+}
+
+/* Bordures nettes en mode clair */
+html.light .border-\[\#1f1f1f\],
+html.light .border-\[\#222222\],
+html.light .border-\[\#262626\],
+html.light .border-\[\#2a2a2a\],
+html.light .border-\[\#333333\],
+html.light .border-white\/\[0\.08\],
+html.light .border-white\/\[0\.06\],
+html.light .border-white\/\[0\.05\],
+html.light .border-white\/10,
+html.light .border-white\/15,
+html.light .border-white\/20,
+html.light .border-\[\#1a2032\],
+html.light .border-\[\#21283a\],
+html.light .border-\[\#283248\] {
+  border-color: #e2e8f0 !important;
+}
+
+/* Typographie contrastée et lisible en mode clair */
+html.light .text-white {
+  color: #0f172a !important;
+}
+
+html.light .text-\[\#ededed\] {
+  color: #1e293b !important;
+}
+
+html.light .text-gray-100 {
+  color: #1e293b !important;
+}
+
+html.light .text-gray-200 {
+  color: #334155 !important;
+}
+
+html.light .text-gray-300 {
+  color: #475569 !important;
+}
+
+html.light .text-\[\#a1a1aa\] {
+  color: #475569 !important;
+}
+
+html.light .text-gray-400,
+html.light .text-\[\#888888\] {
+  color: #64748b !important;
+}
+
+html.light .text-gray-500,
+html.light .text-\[\#71717a\],
+html.light .text-\[\#666666\] {
+  color: #64748b !important;
+}
+
+/* Hover tactile en mode clair */
+html.light .hover\:text-white:hover {
+  color: #0f172a !important;
+}
+
+html.light .hover\:bg-white\/\[0\.04\]:hover,
+html.light .hover\:bg-white\/\[0\.06\]:hover,
+html.light .hover\:bg-white\/\[0\.08\]:hover {
+  background-color: #f1f5f9 !important;
+}
+
+html.light .hover\:border-\[\#404040\]:hover,
+html.light .hover\:border-\[\#444444\]:hover,
+html.light .hover\:border-\[\#383838\]:hover {
+  border-color: #94a3b8 !important;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05) !important;
+}
+
+/* Grille en mode clair */
+html.light .bg-grid-subtle {
+  background-image: 
+    linear-gradient(to right, rgba(15, 23, 42, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(15, 23, 42, 0.04) 1px, transparent 1px);
+}
+
+/* Scrollbar en mode clair */
+html.light ::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+html.light ::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.35);
 }
